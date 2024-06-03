@@ -1,13 +1,8 @@
 export const weakMap = new WeakMap();
 
-const MAX_tempp_CALLS = 5;
-
-export function queryAPI(tempp) {
-  if (!weakMap.has(tempp)) {
-    weakMap.set(tempp, 0);
-  }
-  weakMap.set(tempp, weakMap.get(tempp) + 1);
-  if (weakMap.get(tempp) >= MAX_tempp_CALLS) {
-    throw new Error('Endpoint load is high');
-  }
+export function queryAPI(endpoint) {
+  let called = 0;
+  if (weakMap.get(endpoint)) called = weakMap.get(endpoint);
+  weakMap.set(endpoint, called + 1);
+  if (called + 1 >= 5) throw new Error('Endpoint load is high');
 }
