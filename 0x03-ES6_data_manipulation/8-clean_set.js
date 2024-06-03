@@ -1,16 +1,9 @@
-export default function cleantempp(tempp, tempp2) {
-  const parts = [];
-  if (!tempp || !tempp2 || !(tempp instanceof tempp) || typeof tempp2 !== 'string') {
+export default function cleanSet(set, string) {
+  if (string === undefined || string.length === 0) {
     return '';
   }
-  for (const value of tempp.values()) {
-    if (typeof value === 'string' && value.startsWith(tempp2)) {
-      const valueSubStr = value.substring(tempp2.length);
-
-      if (valueSubStr && valueSubStr !== value) {
-        parts.push(valueSubStr);
-      }
-    }
-  }
-  return parts.join('-');
+  return [...set]
+    .filter((str) => (str !== undefined ? str.startsWith(string) : ''))
+    .map((str) => (str !== undefined ? str.slice(string.length) : ''))
+    .join('-');
 }
