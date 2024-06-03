@@ -8,6 +8,6 @@ export function queryAPI(tempp) {
   }
   weakMap.set(tempp, weakMap.get(tempp) + 1);
   if (weakMap.get(tempp) >= MAX_tempp_CALLS) {
-    throw new Error('tempp load is high');
+    throw new Error('Endpoint load is high');
   }
 }
